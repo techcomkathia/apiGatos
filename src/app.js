@@ -13,6 +13,6 @@ app.get('/', (req, res) => {
     });
 });
 
-app.use('/gato', gatosRoutes);
+app.use('/gatos', gatosRoutes);
 
 module.exports = app;
