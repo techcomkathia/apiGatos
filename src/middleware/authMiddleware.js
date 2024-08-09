@@ -4,7 +4,12 @@ const jwt = require('jsonwebtoken');
 
 function verificarToken(req, res, next) {
 // resgatar o token da requisição
-const token = req.header('Authorization');
+const retornoToken = req.header('Authorization');
+// o retorno de token é uma string no formato 'Bearer token'
+console.log(retornoToken);
+// o token será 
+const token = retornoToken.split(' ')[1]
+
 // se não tiver token, retornar erro
 if (!token) return res.status(401).json({ error: 'Acesso negado' });
 // se tiver token, verificar se é valido
