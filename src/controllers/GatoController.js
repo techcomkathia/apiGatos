@@ -9,7 +9,11 @@ const createGato = (req, res) => {
    GatoServices.createGato(req, res)
 }
 
+const loginGato = (req, res) => {
+    GatoServices.login(req, res)
+}
 module.exports = {
     getGatos,
-    createGato
+    createGato,
+    loginGato
 }

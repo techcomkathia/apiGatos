@@ -2,6 +2,7 @@ const Gato = require('../models/GatoModel');
 const express = require('express');
 const app = express();
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
 app.use(express.json());
 
@@ -45,7 +46,41 @@ const createGato = (req, res) => {
 }
 
 
+const login = async(req, res) => {
+    try {
+    const { email, senha } = req.body;
+    console.log('Email fornecido:', email);
+    console.log('Senha fornecida:', senha);
+    const gato = await Gato.findOne({ where: { email: email },  attributes: ['id', 'primeiroNome', 'sobreNome', 'email', 'senha'] })
+    console.log('Gato encontrado:', gato);
+    console.log('Gato encontrado:', gato.dataValues);
+
+    if (!gato) {
+        return res.status(401).json({ message: 'Email ou senha inválidos' })
+    }
+
+    const senhaCorreta = await bcrypt.compare(senha, gato.dataValues.senha)
+    console.log('Senha :', senha);
+    console.log('Senha :', gato.dataValues.senha);
+    console.log('Senha Correta:', senhaCorreta);
+    if (!senhaCorreta) {
+        return res.status(401).json({ message: 'senha inválida' })
+    }
+    const token = jwt.sign({ id: gato.dataValues.id, email: gato.dataValues.email }, 'your-secret-key', { expiresIn: '1h' })
+    res.status(200).json(
+        {
+            message: 'Login realizado com sucesso', 
+            token: token 
+        })  
+        
+    } catch (error) {
+        res.status(500).json({ message: 'Erro ao fazer login' })
+    }
+}
+
+
 module.exports = {
     getGatos,
-    createGato
+    createGato,
+    login
 }

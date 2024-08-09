@@ -1,5 +1,6 @@
 const express = require('express');
 const gatosRoutes = require('./routes/GatosRoutes');
+const verificarToken = require('./middleware/authMiddleware');
 
 const app = express();
 
