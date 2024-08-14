@@ -10,4 +10,4 @@ test('deve retornar a mensagem de boas-vindas', async () => {
         version: '1.0.0',
         autor: 'Cleitinho'
     }); // Verifica o corpo da resposta
-});
+})

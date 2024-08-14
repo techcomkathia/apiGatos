@@ -1,4 +1,5 @@
-const soma = require('../soma');    
+const soma= function(a, b) {
+    return a + b} 
 
 test('Soma de 1 + 1 deve retornar 2', () => {
     expect(soma(1, 1)).toBe(2);

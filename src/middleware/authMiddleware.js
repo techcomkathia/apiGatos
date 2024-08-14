@@ -6,7 +6,7 @@ function verificarToken(req, res, next) {
 // resgatar o token da requisição
 const retornoToken = req.header('Authorization');
 // o retorno de token é uma string no formato 'Bearer token'
-console.log(retornoToken);
+// console.log(retornoToken);
 // o token será 
 const token = retornoToken.split(' ')[1]
 

@@ -12,7 +12,8 @@ const getGatos = (req, res) => {
     //delegar persistencia para camada de acesso a dados
     Gato.findAll()
     .then(gatos => {
-        res.json(gatos);
+        res.json({statusCode: 200, 
+            dados: gatos});
     })
     .catch(erro => {
         res.json(erro);
