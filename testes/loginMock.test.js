@@ -69,8 +69,13 @@ describe('Testes de Login', () => {
     };
     Gato.findOne.mockResolvedValue(gato);
 
+    //criando um token mockado 
     // Mock do método jwt.sign
+    //jest.spyOn(objeto, nomeDoMetodo)
+    /*mockImplementation é uma implementação personalizada para uma função ou método espiado.*/
     jest.spyOn(jwt, 'sign').mockImplementation((payload, secret, options) => 'fake-token');
+    
+
 
     const res = await request(app)
       .post('/gatos/login')
