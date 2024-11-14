@@ -3,6 +3,8 @@ const express = require('express');
 const app = express();
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const verificarToken = require('../middleware/authMiddleware');
+
 
 app.use(express.json());
 
@@ -16,8 +18,7 @@ const getGatos = (req, res) => {
             dados: gatos});
     })
     .catch(erro => {
-        res.json(erro);
-    })
+res.status(500).json({ message: 'Erro ao buscar gatos', erro });    })
 }
 
 const createGato = async (req, res) => {
