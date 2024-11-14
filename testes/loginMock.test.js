@@ -8,7 +8,7 @@ const jwt = require('jsonwebtoken');
 jest.mock('../src/models/GatoModel');
 
 beforeAll(async () => {
-  server = app.listen(4000, () => console.log('Servidor iniciado para testes. Disponível na porta 4000'));
+  server = app.listen(6000, () => console.log('Servidor iniciado para testes. Disponível na porta 6000'));
 
   // Obter o token de autenticação para testar rotas protegidas
   const response = await request(app)
@@ -19,8 +19,8 @@ beforeAll(async () => {
 });
 
 // Fechar o servidor
-afterAll(() => {
-    server.close();
+afterAll( async() => {
+   await server.close();
   });
 
 describe('Testes de Login', () => {

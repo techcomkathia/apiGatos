@@ -6,7 +6,7 @@ let authToken;
 
 // Inicializar o servidor antes de todos os testes
 beforeAll(async () => {
-  server = app.listen(4000, () => console.log('Servidor iniciado para testes. Disponível na porta 4000'));
+  server = app.listen(6000, () => console.log('Servidor iniciado para testes. Disponível na porta 6000'));
 
   // Obter o token de autenticação para testar rotas protegidas
   const response = await request(app)

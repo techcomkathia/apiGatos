@@ -5,10 +5,10 @@ const verificarToken = require('../middleware/authMiddleware');
 
 //rota protegida
 //path, middleware de autenticação, controlador
-router.post('/', verificarToken, GatoController.getGatos);
+router.get('/', verificarToken, GatoController.getGatos);
 
 //rota publica
 //path, controlador
-router.get('/', verificarToken, GatoController.getGatos);
+router.post('/', GatoController.createGato);
 router.post('/login/', GatoController.loginGato);
 module.exports = router
